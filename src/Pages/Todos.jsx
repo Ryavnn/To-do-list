@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import Navbar from "../Components/Navbar";
 
 function Todos() {
   const [newTodo, setNewTodo] = useState("");
@@ -59,33 +60,36 @@ function Todos() {
   }, [])
 
   return (
-    <section className="to-do-list">
-      <div className="to-do-list-items">
-        <h1>My Todo list</h1>
-        {todos.map((todo) =>(
-          <div key={todo.id} className="to-dos">
-            <div className="item">
-              <input type="checkbox" name="done" id="checkbox" />
-              <span>{todo.text}</span>
+    <>
+      <Navbar />
+      <section className="to-do-list">
+        <div className="to-do-list-items">
+          <h1>My Todo list</h1>
+          {todos.map((todo) =>(
+            <div key={todo.id} className="to-dos">
+              <div className="item">
+                <input type="checkbox" name="done" id="checkbox" />
+                <span>{todo.text}</span>
+              </div>
+              <FaTimes onClick={() =>handleDelete(todo.id)}/>
             </div>
-            <FaTimes onClick={() =>handleDelete(todo.id)}/>
-          </div>
-        ))}
+          ))}
 
 
 
-      </div>
-      <form className="todo-input" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Add item"
-          id="item-add"
-          value={newTodo}
-          onChange={handleChange}
-        />
-        <button type="submit">Add</button>
-      </form>
-    </section>
+        </div>
+        <form className="todo-input" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add item"
+            id="item-add"
+            value={newTodo}
+            onChange={handleChange}
+          />
+          <button type="submit">Add</button>
+        </form>
+      </section>
+    </>
   );
 }
 export default Todos;

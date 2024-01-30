@@ -1,13 +1,17 @@
-import Navbar from './Components/Navbar';
 import './App.css'
-import Todos from './Components/Todos';
+import Todos from './Pages/Todos';
+import { BrowserRouter as Router, Route, Routes,  } from 'react-router-dom';
 
 function App() {
 
   return (
     <div>
-      <Navbar />
-      <Todos />
+        <Router>
+          <Routes>
+            <Route path='/' element={<Todos />} />
+          </Routes>
+        </Router>
+
     </div>
   );
 }
